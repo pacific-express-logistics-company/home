@@ -3,8 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Track a Shipment | Pacific Express Logistics Services</title>
+<title>Operations & warehousing Careers | Pacific Express Logistics Services</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '6540ee750580367ce0ad7922e0bce5d6d6a40627';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+
 <style>
   :root{
     --navy:#0a1f44;
@@ -408,114 +421,67 @@
   }
   @media (max-width:860px){ .foot-grid{grid-template-columns:1fr 1fr;} }
 
-  /* tracking hero */
-  .track-hero{
-    background:var(--navy-deep); color:#fff; padding:64px 0 56px 0; position:relative; overflow:hidden;
-  }
-  .track-hero::before{
-    content:''; position:absolute; inset:0;
-    background:repeating-linear-gradient(45deg,#0f2242,#0f2242 14px,#0c1c38 14px,#0c1c38 28px);
-    opacity:.55; z-index:0;
-  }
-  .track-hero > .wrap{position:relative; z-index:1;}
-  .track-hero h1{font-size:36px; max-width:none; margin:0 0 10px 0;}
-  .track-hero p.lead{font-size:16px; color:#cfd8e4; max-width:56ch; margin:0 0 30px 0;}
-  .track-form{
-    display:flex; gap:10px; flex-wrap:wrap; background:#fff; padding:8px; border-radius:8px; max-width:640px;
-  }
-  .track-form input{
-    flex:1; min-width:180px; border:none; outline:none; padding:14px 16px; font-size:15px;
-    font-family:inherit; color:var(--ink); border-radius:4px;
-  }
-  .track-form button{
-    border:none; background:var(--sky); color:var(--navy-deep); font-weight:700; font-size:14px;
-    padding:0 26px; border-radius:4px; cursor:pointer; transition:background-color .15s ease, transform .15s ease;
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .track-form button:hover{background:#5cc0f0; transform:translateY(-1px);}
-  .track-form button:active{transform:translateY(0); background:var(--sky-deep); color:#fff;}
-  .track-error{
-    margin-top:14px; color:#ffd4d4; font-size:14px; display:none; align-items:center; gap:8px;
-  }
-  .track-error.show{display:flex;}
+  /* ---- solution pages ---- */
+  .page-hero{background:linear-gradient(135deg,var(--navy-deep),var(--navy)); color:#fff; padding:56px 0 52px;}
+  .page-hero .crumbs{font-size:13px; opacity:.75; margin-bottom:14px;}
+  .page-hero .crumbs a{color:inherit; text-decoration:none;}
+  .page-hero .crumbs a:hover{text-decoration:underline;}
+  .page-hero h1{margin:0 0 12px; font-size:clamp(30px,5vw,46px); line-height:1.1;}
+  .page-hero p{margin:0 0 24px; max-width:58ch; opacity:.9; font-size:17px;}
+  .page-hero .hero-ctas{display:flex; gap:12px; flex-wrap:wrap;}
+  .sol-intro{max-width:70ch; font-size:17px; color:var(--ink); margin:0 0 36px;}
+  .feat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;}
+  .feat{border:1px solid var(--line); border-radius:12px; padding:24px; background:#fff;}
+  .feat .ico{width:44px; height:44px; border-radius:10px; background:var(--mist); color:var(--sky-deep);
+    display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:14px;}
+  .feat p{margin:0; color:var(--grey); font-size:15px;}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:18px; counter-reset:s;}
+  .step{position:relative; padding:22px 22px 22px 22px; border-radius:12px; background:var(--paper); border:1px solid var(--line);}
+  .step::before{counter-increment:s; content:counter(s); display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; font-weight:700; font-size:14px; margin-bottom:12px;}
+  .step p{margin:0; color:var(--grey); font-size:15px;}
+  .related{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+  .related a{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:18px 20px;
+    border:1px solid var(--line); border-radius:12px; color:var(--navy); text-decoration:none; font-weight:600;
+    transition:background-color .18s ease, border-color .18s ease, color .18s ease;}
+  .related a:hover,.related a:focus-visible{background:var(--mist); border-color:var(--sky); color:var(--sky-deep);}
+  .two-col{display:grid; grid-template-columns:1.4fr 1fr; gap:32px; align-items:start;}
+  @media (max-width:860px){.two-col{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--line); border-radius:14px; padding:28px; background:#fff;}
+  .card h3{margin-bottom:14px;}
+  .fld{margin-bottom:16px;}
+  .fld label{display:block; font-size:14px; font-weight:600; margin-bottom:6px; color:var(--ink);}
+  .fld input,.fld select,.fld textarea{
+    width:100%; box-sizing:border-box; padding:12px 14px; font:inherit; font-size:15px; color:var(--ink);
+    border:1.5px solid var(--line); border-radius:8px; background:#fff; transition:border-color .15s ease, box-shadow .15s ease;}
+  .fld input:focus,.fld select:focus,.fld textarea:focus{outline:none; border-color:var(--sky-deep); box-shadow:0 0 0 3px rgba(66,176,232,.25);}
+  .fld textarea{min-height:130px; resize:vertical;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:560px){.row2{grid-template-columns:1fr;}}
+  .form-msg{display:none; margin-top:16px; padding:12px 14px; border-radius:8px; background:#e8f6fd; color:var(--navy); font-size:14px;}
+  .form-msg.show{display:block;}
+  .check{display:flex; align-items:center; gap:8px; font-size:14px; margin:4px 0 18px;}
+  .check input{width:auto;}
+  .auth-wrap{max-width:440px; margin:0 auto;}
+  .auth-wrap .btn{width:100%; text-align:center; border:0; cursor:pointer; font:inherit; font-weight:600;}
+  .muted{color:var(--grey); font-size:14px;}
+  .muted a{color:var(--sky-deep);}
+  .info-list{list-style:none; margin:0; padding:0;}
+  .info-list li{display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); font-size:15px;}
+  .info-list li:last-child{border-bottom:0;}
+  .info-list i{color:var(--sky-deep); width:20px; margin-top:3px;}
+  details.faq{border:1px solid var(--line); border-radius:10px; background:#fff; margin-bottom:12px;}
+  details.faq summary{cursor:pointer; padding:16px 20px; font-weight:600; list-style:none; display:flex; justify-content:space-between; gap:12px; align-items:center;}
+  details.faq summary::-webkit-details-marker{display:none;}
+  details.faq summary::after{content:"+"; font-size:20px; color:var(--sky-deep); transition:transform .2s ease;}
+  details.faq[open] summary::after{content:"\2212";}
+  details.faq summary:focus-visible{outline:2px solid var(--sky-deep); outline-offset:-2px; border-radius:10px;}
+  details.faq p{margin:0; padding:0 20px 18px; color:var(--grey); font-size:15px;}
+  .empty{border:1.5px dashed var(--line); border-radius:14px; padding:36px; text-align:center; color:var(--grey);}
+  .empty i{font-size:26px; color:var(--sky-deep); margin-bottom:10px;}
 
-  /* results */
-  .track-results{display:none;}
-  .track-results.show{display:block;}
-  .result-summary{
-    display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px;
-    border:1px solid var(--line); border-radius:10px; padding:28px; margin-bottom:36px;
-  }
-  .result-mode-badge{
-    display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:700;
-    text-transform:uppercase; letter-spacing:.04em; color:var(--sky-deep); background:var(--mist);
-    padding:6px 12px; border-radius:20px; margin-bottom:14px;
-  }
-  .result-route{font-size:22px; font-weight:700; margin:0 0 6px 0; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
-  .result-route i{color:var(--sky-deep); font-size:16px;}
-  .result-id{color:var(--grey); font-size:14px;}
-  .result-eta{text-align:right;}
-  .result-eta .label{font-size:12.5px; color:var(--grey); text-transform:uppercase; letter-spacing:.03em; margin-bottom:4px;}
-  .result-eta .value{font-size:22px; font-weight:700; color:var(--ink);}
-  .result-status-pill{
-    display:inline-block; margin-top:8px; font-size:12.5px; font-weight:700; padding:5px 12px;
-    border-radius:20px; background:#e6f6ea; color:#1f8a45;
-  }
-  .result-status-pill.pending{background:#fff3d6; color:#a5720b;}
-
-  /* stepper */
-  .track-stepper{display:flex; align-items:flex-start; margin:0 0 44px 0; overflow-x:auto; padding-bottom:6px;}
-  .tstep{flex:1; min-width:110px; text-align:center; position:relative; padding:0 6px;}
-  .tstep .dot{
-    width:30px; height:30px; border-radius:50%; background:var(--mist); border:2px solid var(--line);
-    display:flex; align-items:center; justify-content:center; margin:0 auto 10px auto; color:var(--grey); font-size:13px;
-    position:relative; z-index:2; transition:background-color .2s ease, border-color .2s ease, color .2s ease;
-  }
-  .tstep .line{
-    position:absolute; top:14px; left:-50%; width:100%; height:3px; background:var(--line); z-index:1;
-  }
-  .tstep:first-child .line{display:none;}
-  .tstep .tlabel{font-size:12.5px; color:var(--grey); line-height:1.3;}
-  .tstep.done .dot{background:var(--sky-deep); border-color:var(--sky-deep); color:#fff;}
-  .tstep.done .line{background:var(--sky-deep);}
-  .tstep.active .dot{background:var(--sky); border-color:var(--sky); color:var(--navy-deep); box-shadow:0 0 0 5px rgba(66,176,232,.25);}
-  .tstep.active .tlabel{color:var(--ink); font-weight:700;}
-  .tstep.done .tlabel{color:var(--ink);}
-  @media (max-width:700px){ .track-stepper{justify-content:flex-start;} .tstep{min-width:96px;} }
-
-  /* timeline */
-  .track-timeline{list-style:none; margin:0; padding:0;}
-  .ttl-item{
-    display:grid; grid-template-columns:130px 20px 1fr; gap:18px; padding-bottom:28px; position:relative;
-  }
-  .ttl-item:not(:last-child)::before{
-    content:''; position:absolute; left:139px; top:22px; bottom:0; width:2px; background:var(--line);
-  }
-  .ttl-item.done:not(:last-child)::before{background:var(--sky-deep);}
-  .ttl-date{font-size:13px; color:var(--grey); padding-top:2px;}
-  .ttl-dot-wrap{display:flex; justify-content:center;}
-  .ttl-dot{width:14px; height:14px; border-radius:50%; background:var(--line); margin-top:4px;}
-  .ttl-item.done .ttl-dot{background:var(--sky-deep);}
-  .ttl-item.active .ttl-dot{background:var(--sky); box-shadow:0 0 0 4px rgba(66,176,232,.25);}
-  .ttl-body h3{font-size:16px; margin:0 0 4px 0;}
-  .ttl-body p{font-size:14px; color:var(--grey); margin:0;}
-  .ttl-item.pending .ttl-body h3, .ttl-item.pending .ttl-body p{color:var(--grey);}
-
-  /* package info + photos */
-  .package-info{
-    display:grid; grid-template-columns:1fr 1fr; gap:24px;
-    border:1px solid var(--line); border-radius:10px; padding:24px; margin:0 0 36px 0;
-  }
-  .package-info .pi-block h4{font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--grey); margin:0 0 6px 0;}
-  .package-info .pi-block p{font-size:15px; margin:0; color:var(--ink);}
-  .package-info .pi-parties{display:flex; gap:32px; flex-wrap:wrap;}
-  @media (max-width:700px){ .package-info{grid-template-columns:1fr;} }
-
-  .package-photos{margin:0 0 36px 0;}
-  .package-photos .pgrid{display:flex; gap:12px; flex-wrap:wrap;}
-  .package-photos .pgrid img{
-    width:120px; height:120px; object-fit:cover; border-radius:8px; border:1px solid var(--line); cursor:zoom-in;
-  }
+  .tag-list{display:flex; flex-wrap:wrap; gap:10px; list-style:none; margin:0; padding:0;}
+  .tag-list li{padding:10px 16px; border:1px solid var(--line); border-radius:999px; background:#fff; font-size:15px;}
 </style>
 </head>
 <body>
@@ -527,10 +493,10 @@
       <li class="has-dd">
         <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Services<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
         <ul class="dd-menu">
-          <li><a href="index.html#road">Road freight</a></li>
-          <li><a href="index.html#air">Air freight</a></li>
-          <li><a href="index.html#sea">Sea freight</a></li>
-          <li><a href="#">Warehousing</a></li>
+          <li><a href="road-freight.html">Road freight</a></li>
+          <li><a href="air-freight.html">Air freight</a></li>
+          <li><a href="sea-freight.html">Sea freight</a></li>
+          <li><a href="warehousing.html">Warehousing</a></li>
         </ul>
       </li>
       <li class="has-dd">
@@ -542,28 +508,28 @@
           <li><a href="dangerous-goods.html">Dangerous goods</a></li>
         </ul>
       </li>
-      <li class="has-dd">
+      <li class="has-dd current">
         <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Company<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
         <ul class="dd-menu">
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Newsroom</a></li>
-          <li><a href="#">Careers</a></li>
+          <li><a href="about-us.html">About us</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="newsroom.html">Newsroom</a></li>
+          <li><a href="careers.html" aria-current="page">Careers</a></li>
         </ul>
       </li>
-      <li class="has-dd current">
+      <li class="has-dd">
         <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Support<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
         <ul class="dd-menu">
-          <li><a href="track.html" aria-current="page">Track a shipment</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Help centre</a></li>
-          <li><a href="#">Sign in</a></li>
+          <li><a href="track.html">Track a shipment</a></li>
+          <li><a href="contact-us.html">Contact us</a></li>
+          <li><a href="help-centre.html">Help centre</a></li>
+          <li><a href="sign-in.html">Sign in</a></li>
         </ul>
       </li>
     </ul>
     <div class="navcta">
-      <a class="btn btn-outline-dark" href="track.html" style="background:var(--navy); color:#fff;"><i class="fa-solid fa-location-crosshairs" style="margin-right:6px;"></i>Track</a>
-      <a class="btn btn-sky" href="#">Sign in</a>
+      <a class="btn btn-outline-dark" href="track.html"><i class="fa-solid fa-location-crosshairs" style="margin-right:6px;"></i>Track</a>
+      <a class="btn btn-sky" href="sign-in.html">Sign in</a>
       <button class="hamburger" id="menuOpenBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -581,10 +547,10 @@
     <div class="acc-group">
       <button class="acc-btn" type="button" aria-expanded="false">Services<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
       <div class="acc-panel">
-        <a href="index.html#road">Road freight</a>
-        <a href="index.html#air">Air freight</a>
-        <a href="index.html#sea">Sea freight</a>
-        <a href="#">Warehousing</a>
+        <a href="road-freight.html">Road freight</a>
+        <a href="air-freight.html">Air freight</a>
+        <a href="sea-freight.html">Sea freight</a>
+        <a href="warehousing.html">Warehousing</a>
       </div>
     </div>
     <div class="acc-group">
@@ -599,82 +565,104 @@
     <div class="acc-group">
       <button class="acc-btn" type="button" aria-expanded="false">Company<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
       <div class="acc-panel">
-        <a href="#">About us</a>
-        <a href="#">Sustainability</a>
-        <a href="#">Newsroom</a>
-        <a href="#">Careers</a>
+        <a href="about-us.html">About us</a>
+        <a href="sustainability.html">Sustainability</a>
+        <a href="newsroom.html">Newsroom</a>
+        <a href="careers.html" aria-current="page">Careers</a>
       </div>
     </div>
     <div class="acc-group">
       <button class="acc-btn" type="button" aria-expanded="false">Support<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
       <div class="acc-panel">
-        <a href="track.html" aria-current="page">Track a shipment</a>
-        <a href="#">Contact us</a>
-        <a href="#">Help centre</a>
-        <a href="#">Sign in</a>
+        <a href="track.html">Track a shipment</a>
+        <a href="contact-us.html">Contact us</a>
+        <a href="help-centre.html">Help centre</a>
+        <a href="sign-in.html">Sign in</a>
       </div>
     </div>
   </div>
   <div class="drawer-actions">
-    <a class="btn btn-outline" href="track.html">Track</a>
-    <a class="btn btn-sky" href="#">Sign in</a>
+    <a class="btn btn-outline" href="track.html"><i class="fa-solid fa-location-crosshairs" style="margin-right:6px;"></i>Track</a>
+    <a class="btn btn-sky" href="sign-in.html">Sign in</a>
   </div>
 </nav>
 
-<section class="track-hero">
+<section class="page-hero">
   <div class="wrap">
-    <h1>Track your shipment</h1>
-    <p class="lead">Enter your tracking number to see real-time status for your road, air, or sea freight shipment.</p>
-    <form class="track-form" id="trackForm">
-      <input type="text" id="trackInput" placeholder="Enter tracking number, e.g. PE-AR-77190" autocomplete="off">
-      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Track</button>
-    </form>
-    <div class="track-error" id="trackError"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a tracking number.</span></div>
+    <div class="crumbs"><a href="index.html">Home</a> &rsaquo; Company &rsaquo; <a href="careers.html">Careers</a> &rsaquo; Operations &amp; warehousing</div>
+    <h1>Operations &amp; warehousing careers</h1>
+    <p>Keep cargo moving through our storage and distribution facilities.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-sky" href="contact-us.html">Get in touch</a>
+      <a class="btn btn-outline" href="careers.html">All careers</a>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="track-results" id="trackResults">
-      <div class="result-summary">
-        <div>
-          <span class="result-mode-badge" id="rModeBadge"><i class="fa-solid fa-truck"></i> Road Freight</span>
-          <div class="result-route" id="rRoute"><span>Origin</span><i class="fa-solid fa-arrow-right"></i><span>Destination</span></div>
-          <div class="result-id" id="rId">Tracking number: —</div>
-        </div>
-        <div class="result-eta">
-          <div class="label">Estimated delivery</div>
-          <div class="value" id="rEta">—</div>
-          <span class="result-status-pill" id="rStatusPill">In transit</span>
-        </div>
-      </div>
+    <p class="sol-intro">Our operations teams receive, store, prepare and dispatch goods, making sure every order leaves on time and in good condition.</p>
+    <h2>What you will do</h2>
+    <p class="subhead">A typical day in this area of the business.</p>
+    <div class="feat-grid">
+      <div class="feat"><div class="ico"><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i></div><h3>Handle and store cargo</h3><p>Receive goods, check them in and keep stock organised and secure.</p></div>
+      <div class="feat"><div class="ico"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></div><h3>Prepare orders</h3><p>Pick, pack and label shipments accurately for dispatch.</p></div>
+      <div class="feat"><div class="ico"><i class="fa-solid fa-truck-ramp-box" aria-hidden="true"></i></div><h3>Coordinate dispatch</h3><p>Work with transport teams so shipments leave on schedule.</p></div>
+      <div class="feat"><div class="ico"><i class="fa-solid fa-helmet-safety" aria-hidden="true"></i></div><h3>Work safely</h3><p>Follow safe handling procedures to protect people and cargo.</p></div>
+    </div>
+  </div>
+</section>
 
-      <div class="track-stepper" id="trackStepper"></div>
+<section class="section-tight" style="background:var(--mist);">
+  <div class="wrap">
+    <h2>Roles in this area</h2>
+    <p class="subhead">Examples of the kinds of roles our teams include.</p>
+    <ul class="tag-list">
+      <li>Warehouse operative</li>
+      <li>Forklift operator</li>
+      <li>Inventory controller</li>
+      <li>Shift supervisor</li>
+      <li>Operations coordinator</li>
+    </ul>
+  </div>
+</section>
 
-      <div class="package-info" id="packageInfo" style="display:none;">
-        <div class="pi-block">
-          <h4>Shipment description</h4>
-          <p id="piDescription">—</p>
-        </div>
-        <div class="pi-block pi-parties">
-          <div>
-            <h4>From</h4>
-            <p id="piSender">—</p>
-          </div>
-          <div>
-            <h4>To</h4>
-            <p id="piReceiver">—</p>
-          </div>
-        </div>
-      </div>
+<section class="section-tight">
+  <div class="wrap">
+    <h2>What we look for</h2>
+    <ul class="af-list" style="max-width:70ch;">
+      <li>Attention to detail and a safety-first attitude</li>
+      <li>Comfort working in a fast-paced, physical environment</li>
+      <li>Willingness to work as part of a team</li>
+      <li>Relevant training or experience is helpful, but not always required</li>
+    </ul>
+  </div>
+</section>
 
-      <div class="package-photos" id="packagePhotos" style="display:none;">
-        <h3 style="margin-bottom:14px;">Package photos</h3>
-        <div class="pgrid" id="packagePhotosGrid"></div>
-      </div>
+<section class="section-tight" style="background:var(--mist);">
+  <div class="wrap">
+    <h2>Interested in joining us?</h2>
+    <p class="subhead">Send us a message about the area you would like to work in and we will get back to you.</p>
+    <a class="btn btn-navy" href="contact-us.html">Get in touch</a>
+  </div>
+</section>
 
-      <h3 style="margin-bottom:18px;">Shipment history</h3>
-      <ul class="track-timeline" id="trackTimeline"></ul>
+<section class="section-tight">
+  <div class="wrap">
+    <h2>Other careers</h2>
+    <div class="related" style="margin-top:20px;">
+      <a href="career-drivers-fleet.html">Drivers &amp; fleet<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="career-customs-compliance.html">Customs &amp; compliance<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <a href="career-customer-service.html">Customer service<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="section-tight">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to move your cargo?</h2>
+      <a class="btn btn-navy" href="contact-us.html">Get a quote</a>
     </div>
   </div>
 </section>
@@ -689,10 +677,10 @@
       <div>
         <h4>Services</h4>
         <ul>
-          <li><a href="index.html#road" style="color:inherit; text-decoration:none;">Road freight</a></li>
-          <li><a href="index.html#air" style="color:inherit; text-decoration:none;">Air freight</a></li>
-          <li><a href="index.html#sea" style="color:inherit; text-decoration:none;">Sea freight</a></li>
-          <li>Warehousing</li>
+          <li><a href="road-freight.html" style="color:inherit; text-decoration:none;">Road freight</a></li>
+          <li><a href="air-freight.html" style="color:inherit; text-decoration:none;">Air freight</a></li>
+          <li><a href="sea-freight.html" style="color:inherit; text-decoration:none;">Sea freight</a></li>
+          <li><a href="warehousing.html" style="color:inherit; text-decoration:none;">Warehousing</a></li>
         </ul>
       </div>
       <div>
@@ -707,19 +695,19 @@
       <div>
         <h4>Company</h4>
         <ul>
-          <li>About us</li>
-          <li>Sustainability</li>
-          <li>Newsroom</li>
-          <li>Careers</li>
+          <li><a href="about-us.html" style="color:inherit; text-decoration:none;">About us</a></li>
+          <li><a href="sustainability.html" style="color:inherit; text-decoration:none;">Sustainability</a></li>
+          <li><a href="newsroom.html" style="color:inherit; text-decoration:none;">Newsroom</a></li>
+          <li><a href="careers.html" style="color:inherit; text-decoration:none;">Careers</a></li>
         </ul>
       </div>
       <div>
         <h4>Support</h4>
         <ul>
           <li><a href="track.html" style="color:inherit; text-decoration:none;">Track a shipment</a></li>
-          <li>Contact us</li>
-          <li>Help centre</li>
-          <li>Sign in</li>
+          <li><a href="contact-us.html" style="color:inherit; text-decoration:none;">Contact us</a></li>
+          <li><a href="help-centre.html" style="color:inherit; text-decoration:none;">Help centre</a></li>
+          <li><a href="sign-in.html" style="color:inherit; text-decoration:none;">Sign in</a></li>
         </ul>
       </div>
     </div>
@@ -729,156 +717,6 @@
     </div>
   </div>
 </footer>
-
-<script>
-(function(){
-  // TODO: paste your deployed Apps Script Web App URL here (same one used by track-admin.html)
-  var API_URL = "https://script.google.com/macros/s/AKfycbwHPLIWFap9TSmamizNDUcmVaFXkwH6KL5sSQyuFXuUqWj0_4p_8jKI-NO8P-c3iVsp/exec";
-
-  var MODE_META = {
-    road:{ label:'Road Freight', icon:'fa-truck' },
-    air:{ label:'Air Freight', icon:'fa-plane' },
-    sea:{ label:'Sea Freight', icon:'fa-ship' }
-  };
-
-  function fmtDate(d){
-    d = (d instanceof Date) ? d : new Date(d);
-    return d.toLocaleDateString(undefined,{month:'short', day:'numeric', year:'numeric'}) + ', ' +
-      d.toLocaleTimeString(undefined,{hour:'2-digit', minute:'2-digit'});
-  }
-
-  function renderResults(shipment, events){
-    var meta = MODE_META[shipment.mode] || MODE_META.road;
-    var totalSteps = events.length;
-    var currentStep = Number(shipment.currentStep);
-    var delivered = currentStep >= totalSteps - 1 && events[totalSteps - 1].status !== 'pending';
-
-    var badge = document.getElementById('rModeBadge');
-    badge.innerHTML = '<i class="fa-solid ' + meta.icon + '"></i> ' + meta.label;
-
-    document.getElementById('rRoute').innerHTML =
-      '<span>' + shipment.origin + '</span><i class="fa-solid fa-arrow-right"></i><span>' + shipment.destination + '</span>';
-    document.getElementById('rId').textContent = 'Tracking number: ' + shipment.trackingId.toUpperCase();
-    document.getElementById('rEta').textContent = fmtDate(shipment.eta);
-
-    var pill = document.getElementById('rStatusPill');
-    if(delivered){
-      pill.textContent = 'Delivered';
-      pill.classList.remove('pending');
-    } else {
-      pill.textContent = events[currentStep] ? events[currentStep].title : shipment.status;
-      pill.classList.add('pending');
-    }
-
-    var stepperHtml = '';
-    events.forEach(function(ev, i){
-      var cls = i < currentStep ? 'done' : (i === currentStep ? 'active' : '');
-      stepperHtml += '<div class="tstep ' + cls + '"><div class="line"></div><div class="dot">' +
-        (i < currentStep ? '<i class="fa-solid fa-check"></i>' : (i+1)) +
-        '</div><div class="tlabel">' + ev.title + '</div></div>';
-    });
-    document.getElementById('trackStepper').innerHTML = stepperHtml;
-
-    var timelineHtml = '';
-    for(var i = events.length - 1; i >= 0; i--){
-      var ev = events[i];
-      var datePrefix = ev.status === 'pending' ? 'Est. ' : '';
-      timelineHtml += '<li class="ttl-item ' + ev.status + '">' +
-        '<div class="ttl-date">' + datePrefix + fmtDate(ev.date) + '</div>' +
-        '<div class="ttl-dot-wrap"><div class="ttl-dot"></div></div>' +
-        '<div class="ttl-body"><h3>' + ev.title + '</h3><p>' + ev.location + '</p></div>' +
-        '</li>';
-    }
-    document.getElementById('trackTimeline').innerHTML = timelineHtml;
-
-    // Package description + sender/receiver names.
-    // Note: only names are shown here, never phone/email/address — those
-    // stay admin-only in the dashboard to protect both parties' privacy.
-    var infoBlock = document.getElementById('packageInfo');
-    if (shipment.description || shipment.senderName || shipment.receiverName) {
-      document.getElementById('piDescription').textContent = shipment.description || 'No description provided.';
-      document.getElementById('piSender').textContent = shipment.senderName || '—';
-      document.getElementById('piReceiver').textContent = shipment.receiverName || '—';
-      infoBlock.style.display = 'grid';
-    } else {
-      infoBlock.style.display = 'none';
-    }
-
-    // Package photos, if the admin has uploaded any.
-    var photosBlock = document.getElementById('packagePhotos');
-    var photoUrls = shipment.photoUrls || [];
-    if (photoUrls.length) {
-      document.getElementById('packagePhotosGrid').innerHTML = photoUrls.map(function(item){
-        var u = (typeof item === 'string') ? item : item.url;
-        return '<img src="' + u + '" alt="Package photo" loading="lazy" onclick="window.open(this.src, \'_blank\')">';
-      }).join('');
-      photosBlock.style.display = 'block';
-    } else {
-      photosBlock.style.display = 'none';
-    }
-
-    document.getElementById('trackResults').classList.add('show');
-    document.getElementById('trackResults').scrollIntoView({behavior:'smooth', block:'start'});
-  }
-
-  var form = document.getElementById('trackForm');
-  var input = document.getElementById('trackInput');
-  var errorEl = document.getElementById('trackError');
-  var trackBtn = form.querySelector('button[type="submit"]');
-
-  function setError(message){
-    errorEl.querySelector('span').textContent = message;
-    errorEl.classList.add('show');
-  }
-
-  async function runTrack(id){
-    id = (id || '').trim();
-    if(!id){
-      setError('Please enter a tracking number.');
-      return;
-    }
-    errorEl.classList.remove('show');
-
-    var originalBtnHtml = trackBtn.innerHTML;
-    trackBtn.disabled = true;
-    trackBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Tracking…';
-    document.getElementById('trackResults').classList.remove('show');
-
-    try{
-      var res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ action: 'trackShipment', trackingId: id })
-      });
-      var data = await res.json();
-
-      if(data && data.status && data.shipment){
-        renderResults(data.shipment, data.events || []);
-      } else {
-        setError((data && data.message) || "We couldn't find a shipment with that tracking number.");
-      }
-    } catch(err){
-      setError('Something went wrong reaching our tracking service. Please try again.');
-    } finally {
-      trackBtn.disabled = false;
-      trackBtn.innerHTML = originalBtnHtml;
-    }
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    runTrack(input.value);
-  });
-
-  // auto-run if a tracking number is passed via ?id= or #id
-  var params = new URLSearchParams(window.location.search);
-  var preset = params.get('id');
-  if(preset){
-    input.value = preset;
-    runTrack(preset);
-  }
-})();
-</script>
 
 <script>
   (function(){

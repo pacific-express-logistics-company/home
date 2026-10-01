@@ -142,10 +142,21 @@
   /* modal */
   .modal-overlay{position:fixed; inset:0; background:rgba(7,22,48,.55); display:none; align-items:center; justify-content:center; z-index:200; padding:20px;}
   .modal-overlay.show{display:flex;}
-  .modal{background:#fff; border-radius:14px; width:100%; max-width:440px; max-height:90vh; overflow-y:auto; padding:26px;}
+  .modal{
+    background:#fff; border-radius:14px; width:100%; max-width:440px; max-height:90vh;
+    padding:0; overflow:hidden; display:flex; flex-direction:column;
+  }
+  .modal-header{position:relative; flex-shrink:0; padding:26px 54px 18px 26px;}
   .modal-title{font-size:17px; font-weight:800; margin-bottom:4px;}
-  .modal-sub{font-size:12.5px; color:var(--grey); margin-bottom:18px;}
-  .modal-actions{display:flex; gap:10px; margin-top:20px;}
+  .modal-sub{font-size:12.5px; color:var(--grey);}
+  .modal-close{
+    position:absolute; top:18px; right:18px; width:30px; height:30px; border-radius:50%;
+    border:none; background:var(--mist); color:var(--grey); font-size:14px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .modal-close:hover{background:var(--line); color:var(--ink);}
+  .modal-body{flex:1 1 auto; overflow-y:auto; padding:4px 26px 22px;}
+  .modal-actions{display:flex; gap:10px; flex-shrink:0; padding:18px 26px 26px; border-top:1px solid var(--line); margin-top:0;}
   .modal-actions .btn{flex:1;}
 
   /* toast */
@@ -240,7 +251,7 @@
   .photo-upload-status.err{color:var(--danger);}
   .spin-sm{width:12px; height:12px; border:2px solid rgba(26,127,184,.25); border-top-color:var(--sky-deep); border-radius:50%; animation:spin .7s linear infinite; display:inline-block; flex-shrink:0;}
 
-  .detail-tabs{display:flex; gap:4px; margin-bottom:16px; border-bottom:1px solid var(--line);}
+  .detail-tabs{display:flex; gap:4px; margin-top:14px; margin-bottom:-18px; border-bottom:1px solid var(--line);}
   .detail-tab{padding:9px 4px; margin-right:16px; font-size:13px; font-weight:700; color:var(--grey); cursor:pointer; border-bottom:2.5px solid transparent;}
   .detail-tab.active{color:var(--navy); border-color:var(--sky-deep);}
   .detail-pane{display:none;}
@@ -346,9 +357,13 @@
 <!-- ===== MODAL: New Shipment ===== -->
 <div class="modal-overlay" id="createModal">
   <div class="modal modal-lg">
-    <div class="modal-title">New shipment</div>
-    <div class="modal-sub">A default 6-step timeline is generated automatically for the chosen freight mode. Photos can be added once the shipment exists, from its Details panel.</div>
+    <div class="modal-header">
+      <button class="modal-close" type="button" onclick="closeCreateModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title">New shipment</div>
+      <div class="modal-sub">A default 6-step timeline is generated automatically for the chosen freight mode. Photos can be added once the shipment exists, from its Details panel.</div>
+    </div>
 
+    <div class="modal-body">
     <div class="field-section">Shipment</div>
     <div class="field-row">
       <div class="field">
@@ -421,8 +436,17 @@
       <div class="field"><label>Address</label><input type="text" id="newReceiverAddress" placeholder="Address"></div>
     </div>
 
+    <div class="field-section">Package Photos <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--grey); font-size:11.5px;">(optional)</span></div>
+    <div class="photo-upload-row">
+      <label class="btn btn-ghost btn-sm photo-choose-btn" for="newPhotoFileInput"><i class="fa-solid fa-image"></i> Choose photos</label>
+      <input type="file" id="newPhotoFileInput" accept="image/*" multiple style="display:none" onchange="handleNewPhotosSelected(this)">
+      <span id="newPhotoSelectedName" class="photo-selected-name">No photos selected</span>
+    </div>
+    <div id="newPhotoPreviewGrid" class="photo-grid"></div>
+    <div class="photo-empty" id="newPhotoEmptyMsg">Photos are uploaded once the shipment is created.</div>
+    </div>
+
     <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeCreateModal()">Cancel</button>
       <button class="btn btn-primary" id="createBtn" onclick="handleCreateShipment()">Create</button>
     </div>
   </div>
@@ -431,14 +455,18 @@
 <!-- ===== MODAL: Shipment Details (view/edit + photos) ===== -->
 <div class="modal-overlay" id="detailModal">
   <div class="modal modal-lg">
-    <div class="modal-title" id="detailTitle">Shipment details</div>
-    <div class="modal-sub" id="detailSub"></div>
+    <div class="modal-header">
+      <button class="modal-close" type="button" onclick="closeDetailModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title" id="detailTitle">Shipment details</div>
+      <div class="modal-sub" id="detailSub"></div>
 
-    <div class="detail-tabs">
-      <div class="detail-tab active" data-pane="info" onclick="switchDetailTab('info')">Details</div>
-      <div class="detail-tab" data-pane="photos" onclick="switchDetailTab('photos')">Photos <span id="detailPhotoCount" class="count" style="background:var(--mist); color:var(--grey); font-size:11px; padding:1px 7px; border-radius:20px;">0</span></div>
+      <div class="detail-tabs">
+        <div class="detail-tab active" data-pane="info" onclick="switchDetailTab('info')">Details</div>
+        <div class="detail-tab" data-pane="photos" onclick="switchDetailTab('photos')">Photos <span id="detailPhotoCount" class="count" style="background:var(--mist); color:var(--grey); font-size:11px; padding:1px 7px; border-radius:20px;">0</span></div>
+      </div>
     </div>
 
+    <div class="modal-body">
     <div class="detail-pane active" id="detailPane-info">
       <div class="field-row">
         <div class="field">
@@ -489,10 +517,6 @@
         <div class="field"><label>Address</label><input type="text" id="dReceiverAddress"></div>
       </div>
 
-      <div class="modal-actions">
-        <button class="btn btn-ghost" onclick="closeDetailModal()">Close</button>
-        <button class="btn btn-primary" id="saveDetailsBtn" onclick="handleSaveDetails()">Save changes</button>
-      </div>
     </div>
 
     <div class="detail-pane" id="detailPane-photos">
@@ -506,10 +530,11 @@
 
       <div id="photoGridWrap" class="photo-grid"></div>
       <div id="photoEmptyMsg" class="photo-empty" style="display:none;">No photos uploaded yet.</div>
+    </div>
+    </div>
 
-      <div class="modal-actions">
-        <button class="btn btn-ghost" onclick="closeDetailModal()">Close</button>
-      </div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="saveDetailsBtn" onclick="handleSaveDetails()">Save changes</button>
     </div>
   </div>
 </div>
@@ -517,8 +542,10 @@
 <!-- ===== MODAL: Confirm ===== -->
 <div class="modal-overlay" id="confirmModal">
   <div class="modal">
-    <div class="modal-title" id="confirmTitle">Are you sure?</div>
-    <div class="modal-sub" id="confirmMessage"></div>
+    <div class="modal-header" style="padding-bottom:0;">
+      <div class="modal-title" id="confirmTitle">Are you sure?</div>
+      <div class="modal-sub" id="confirmMessage"></div>
+    </div>
     <div class="modal-actions">
       <button class="btn btn-ghost" id="confirmCancelBtn">Cancel</button>
       <button class="btn btn-danger" id="confirmOkBtn">Confirm</button>
@@ -783,7 +810,12 @@ function renderShipments() {
             </div>
           </div>
         </td>
-        <td data-label="Tracking ID" class="mono card-detail mobile-hide">${escapeHtml(s.trackingId)}</td>
+        <td data-label="Tracking ID" class="mono card-detail mobile-hide">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span>${escapeHtml(s.trackingId)}</span>
+            <button class="icon-btn" onclick="event.stopPropagation(); copyTrackingId('${escapeHtml(s.trackingId)}')" title="Copy tracking ID"><i class="fa-regular fa-copy"></i></button>
+          </div>
+        </td>
         <td data-label="Mode" class="card-detail"><span class="mode-badge ${escapeHtml(s.mode)}">${escapeHtml(MODES[s.mode] ? MODES[s.mode].label : s.mode)}</span></td>
         <td data-label="Route" class="card-detail mobile-hide"><div class="route-cell">${escapeHtml(s.origin)} <i class="fa-solid fa-arrow-right"></i> ${escapeHtml(s.destination)}</div></td>
         <td data-label="Shipping Status" class="card-detail"><span class="shipstatus-pill ${escapeHtml(shipStatus.replace(/\s+/g,'-'))}">${escapeHtml(shipStatus)}</span></td>
@@ -823,10 +855,64 @@ function openCreateModal() {
   document.getElementById('newMode').value = 'road';
   document.getElementById('newShippingStatus').value = 'Pending';
   document.getElementById('newCurrency').value = 'USD';
+  resetNewPhotoQueue();
   document.getElementById('createModal').classList.add('show');
 }
 function closeCreateModal() {
   document.getElementById('createModal').classList.remove('show');
+  resetNewPhotoQueue();
+}
+
+/* ---- Photos queued on the "New shipment" panel, uploaded right after
+   the shipment is created (a shipment row has to exist first, since
+   photos are attached to it by tracking ID). ---- */
+let newShipmentPhotoQueue = [];
+
+function resetNewPhotoQueue() {
+  newShipmentPhotoQueue.forEach(p => URL.revokeObjectURL(p.previewUrl));
+  newShipmentPhotoQueue = [];
+  document.getElementById('newPhotoFileInput').value = '';
+  renderNewPhotoQueue();
+}
+
+function handleNewPhotosSelected(inputEl) {
+  const files = Array.from(inputEl.files || []);
+  files.forEach(file => newShipmentPhotoQueue.push({ file, previewUrl: URL.createObjectURL(file) }));
+  inputEl.value = ''; // allow re-selecting the same file(s) again later
+  renderNewPhotoQueue();
+}
+
+function removeQueuedPhoto(index) {
+  const [removed] = newShipmentPhotoQueue.splice(index, 1);
+  if (removed) URL.revokeObjectURL(removed.previewUrl);
+  renderNewPhotoQueue();
+}
+
+function renderNewPhotoQueue() {
+  const nameEl = document.getElementById('newPhotoSelectedName');
+  const emptyMsg = document.getElementById('newPhotoEmptyMsg');
+  const grid = document.getElementById('newPhotoPreviewGrid');
+
+  nameEl.textContent = newShipmentPhotoQueue.length
+    ? `${newShipmentPhotoQueue.length} photo${newShipmentPhotoQueue.length > 1 ? 's' : ''} selected`
+    : 'No photos selected';
+
+  grid.innerHTML = newShipmentPhotoQueue.map((p, i) => `
+    <div class="photo-thumb">
+      <img src="${p.previewUrl}" alt="${escapeHtml(p.file.name)}">
+      <button title="Remove" onclick="removeQueuedPhoto(${i})"><i class="fa-solid fa-xmark"></i></button>
+    </div>`).join('');
+
+  emptyMsg.style.display = newShipmentPhotoQueue.length ? 'none' : 'block';
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('Could not read ' + file.name));
+    reader.readAsDataURL(file);
+  });
 }
 
 async function handleCreateShipment() {
@@ -864,7 +950,33 @@ async function handleCreateShipment() {
     const res = await api('createShipment', payload);
     if (!res.status) throw new Error(res.message || 'Failed to create shipment');
 
-    showToast(`Shipment ${res.trackingId} created`, 'ok');
+    const newTrackingId = res.trackingId;
+    const photoCount = newShipmentPhotoQueue.length;
+    let failedCount = 0;
+
+    for (let i = 0; i < photoCount; i++) {
+      btn.innerHTML = `<span class="spin"></span> Uploading photo ${i + 1}/${photoCount}…`;
+      const { file } = newShipmentPhotoQueue[i];
+      try {
+        const base64 = await readFileAsDataUrl(file);
+        const photoRes = await api('uploadShipmentPhoto', {
+          trackingId: newTrackingId,
+          photoBase64: base64, // data: URL — the backend strips the prefix
+          mimeType: file.type || 'image/jpeg',
+          fileName: file.name
+        });
+        if (!photoRes.status) failedCount++;
+      } catch (photoErr) {
+        failedCount++;
+      }
+    }
+
+    if (failedCount > 0) {
+      showToast(`Shipment ${newTrackingId} created, but ${failedCount} of ${photoCount} photo(s) failed to upload — add them from Details`, 'err');
+    } else {
+      showToast(`Shipment ${newTrackingId} created${photoCount ? ` with ${photoCount} photo${photoCount > 1 ? 's' : ''}` : ''}`, 'ok');
+    }
+
     closeCreateModal();
     loadShipments();
   } catch (err) {
@@ -944,18 +1056,21 @@ async function handleSaveDetails() {
   }
 }
 
-function renderPhotoGrid(urls) {
-  document.getElementById('detailPhotoCount').textContent = urls.length;
+function renderPhotoGrid(items) {
+  document.getElementById('detailPhotoCount').textContent = items.length;
   const wrap = document.getElementById('photoGridWrap');
   const emptyMsg = document.getElementById('photoEmptyMsg');
 
-  wrap.innerHTML = urls.map(u => `
+  wrap.innerHTML = items.map(item => {
+    const url = typeof item === 'string' ? item : item.url; // supports legacy plain-URL entries too
+    return `
     <div class="photo-thumb">
-      <img src="${escapeHtml(u)}" alt="Package photo" loading="lazy">
-      <button title="Remove photo" onclick="handleDeletePhoto('${escapeHtml(u)}')"><i class="fa-solid fa-xmark"></i></button>
-    </div>`).join('');
+      <img src="${escapeHtml(url)}" alt="Package photo" loading="lazy">
+      <button title="Remove photo" onclick="handleDeletePhoto('${escapeHtml(url)}')"><i class="fa-solid fa-xmark"></i></button>
+    </div>`;
+  }).join('');
 
-  emptyMsg.style.display = urls.length ? 'none' : 'block';
+  emptyMsg.style.display = items.length ? 'none' : 'block';
 }
 
 function resetPhotoPicker() {

@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Road, Air &amp; Sea Freight | Pacific Express Logistics Services</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '6540ee750580367ce0ad7922e0bce5d6d6a40627';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+
 <style>
   :root{
     --navy:#0a1f44;
@@ -75,19 +88,57 @@
     background:repeating-linear-gradient(45deg, #2a3a5c, #2a3a5c 6px, #223252 6px, #223252 12px);
     color:#9fb0c9;
   }
-  .navlinks{display:flex; gap:4px; font-size:14px; list-style:none; margin:0; padding:0;}
-  .navlinks li{
-    cursor:pointer; padding:9px 14px; border-radius:6px; color:var(--ink);
+  /* ---- nav dropdowns ---- */
+  .navlinks{display:flex; gap:2px; font-size:14px; list-style:none; margin:0; padding:0;}
+  .navlinks > li{position:relative;}
+  .dd-toggle{
+    display:flex; align-items:center; gap:7px; background:none; border:0; font:inherit; color:var(--ink);
+    cursor:pointer; padding:9px 14px; border-radius:6px;
     transition:background-color .18s ease, color .18s ease;
   }
-  .navlinks li:hover,
-  .navlinks li:focus-visible{
-    background:var(--mist); color:var(--sky-deep);
+  .dd-toggle i{font-size:10px; transition:transform .2s ease;}
+    .dd-toggle:hover,
+  .navlinks > li.open > .dd-toggle,
+  .dd-toggle:focus-visible{background:var(--mist); color:var(--sky-deep);}
+  .navlinks > li.current > .dd-toggle{color:var(--sky-deep); font-weight:600;}
+  .dd-toggle:focus-visible{outline:2px solid var(--sky-deep); outline-offset:-2px;}
+  .navlinks > li.open > .dd-toggle i{transform:rotate(180deg);}
+  .dd-menu{
+    position:absolute; top:100%; left:0; min-width:240px; margin:0; padding:8px; list-style:none;
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    box-shadow:0 14px 34px rgba(10,31,68,.16);
+    opacity:0; visibility:hidden; transform:translateY(6px);
+    transition:opacity .18s ease, transform .18s ease, visibility .18s;
+    z-index:60;
   }
-  .navlinks li:active{
-    background:#e4ebf2; color:var(--sky-deep);
+  .dd-menu::before{content:""; position:absolute; left:0; right:0; top:-8px; height:8px;}
+  .navlinks > li.open > .dd-menu{opacity:1; visibility:visible; transform:none;}
+  .dd-menu a{
+    display:block; padding:10px 12px; border-radius:6px; color:var(--ink); text-decoration:none;
+    transition:background-color .15s ease, color .15s ease;
   }
-  .navlinks li:focus-visible{outline:2px solid var(--sky-deep); outline-offset:-2px;}
+  .dd-menu a:hover,
+  .dd-menu a:focus-visible{background:var(--mist); color:var(--sky-deep);}
+  .dd-menu a:focus-visible{outline:2px solid var(--sky-deep); outline-offset:-2px;}
+  .dd-menu a[aria-current="page"]{color:var(--sky-deep); font-weight:600;}
+
+  /* mobile drawer accordion */
+  .drawer-nav{flex:1; overflow-y:auto; padding:10px 8px;}
+  .acc-btn{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    background:none; border:0; border-bottom:1px solid rgba(255,255,255,.08);
+    color:#fff; font:inherit; font-size:15px; padding:14px 12px; cursor:pointer; border-radius:6px;
+    transition:background-color .18s ease;
+  }
+  .acc-btn:hover,.acc-btn:focus-visible{background:rgba(255,255,255,.1);}
+  .acc-btn:focus-visible{outline:2px solid var(--sky); outline-offset:-2px;}
+  .acc-btn i{font-size:11px; transition:transform .2s ease;}
+  .acc-group.open .acc-btn i{transform:rotate(180deg);}
+  .acc-panel{display:none; padding:4px 0 8px 12px;}
+  .acc-group.open .acc-panel{display:block;}
+  .acc-panel a{display:block; padding:11px 12px; font-size:14px; color:rgba(255,255,255,.85); text-decoration:none; border-radius:6px;}
+  .acc-panel a:hover,.acc-panel a:focus-visible{background:rgba(255,255,255,.1); color:#fff;}
+  .acc-panel a[aria-current="page"]{color:var(--sky); font-weight:600;}
   .navcta{display:flex; gap:10px; align-items:center;}
   .hamburger{
     display:none; background:none; border:none; color:var(--ink); font-size:20px;
@@ -377,16 +428,46 @@
   <div class="nav">
     <a class="logo" href="index.html" style="text-decoration:none;"><img src="images/pacific-express-logo.png" alt="" style="height: 60px;"></a>
     <ul class="navlinks">
-      <li tabindex="0" onclick="location.hash='road'">Road Freight</li>
-      <li tabindex="0" onclick="location.hash='air'">Air Freight</li>
-      <li tabindex="0" onclick="location.hash='sea'">Sea Freight</li>
-      <li tabindex="0">Sustainability</li>
-      <li tabindex="0">Insights</li>
-      <li tabindex="0">Support</li>
+      <li class="has-dd">
+        <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Services<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+        <ul class="dd-menu">
+          <li><a href="road-freight.html">Road freight</a></li>
+          <li><a href="air-freight.html">Air freight</a></li>
+          <li><a href="sea-freight.html">Sea freight</a></li>
+          <li><a href="warehousing.html">Warehousing</a></li>
+        </ul>
+      </li>
+      <li class="has-dd">
+        <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Solutions<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+        <ul class="dd-menu">
+          <li><a href="supply-chain-management.html">Supply chain management</a></li>
+          <li><a href="customs.html">Customs</a></li>
+          <li><a href="cold-chain.html">Cold chain</a></li>
+          <li><a href="dangerous-goods.html">Dangerous goods</a></li>
+        </ul>
+      </li>
+      <li class="has-dd">
+        <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Company<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+        <ul class="dd-menu">
+          <li><a href="about-us.html">About us</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="newsroom.html">Newsroom</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </li>
+      <li class="has-dd">
+        <button class="dd-toggle" type="button" aria-haspopup="true" aria-expanded="false">Support<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+        <ul class="dd-menu">
+          <li><a href="track.html">Track a shipment</a></li>
+          <li><a href="contact-us.html">Contact us</a></li>
+          <li><a href="help-centre.html">Help centre</a></li>
+          <li><a href="sign-in.html">Sign in</a></li>
+        </ul>
+      </li>
     </ul>
     <div class="navcta">
       <a class="btn btn-outline-dark" href="track.html"><i class="fa-solid fa-location-crosshairs" style="margin-right:6px;"></i>Track</a>
-      <a class="btn btn-sky" href="#">Sign in</a>
+      <a class="btn btn-sky" href="sign-in.html">Sign in</a>
       <button class="hamburger" id="menuOpenBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer">
         <i class="fa-solid fa-bars"></i>
       </button>
@@ -400,17 +481,47 @@
     <div class="logo" style="color:#fff;"><img src="images/pacific-express-logo.png" alt="" style="height: 40px;"></div>
     <button class="drawer-close" id="menuCloseBtn" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
   </div>
-  <ul>
-    <li tabindex="0" onclick="location.hash='road'">Road Freight</li>
-    <li tabindex="0" onclick="location.hash='air'">Air Freight</li>
-    <li tabindex="0" onclick="location.hash='sea'">Sea Freight</li>
-    <li tabindex="0">Sustainability</li>
-    <li tabindex="0">Insights</li>
-    <li tabindex="0">Support</li>
-  </ul>
+  <div class="drawer-nav">
+    <div class="acc-group">
+      <button class="acc-btn" type="button" aria-expanded="false">Services<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <div class="acc-panel">
+        <a href="road-freight.html">Road freight</a>
+        <a href="air-freight.html">Air freight</a>
+        <a href="sea-freight.html">Sea freight</a>
+        <a href="warehousing.html">Warehousing</a>
+      </div>
+    </div>
+    <div class="acc-group">
+      <button class="acc-btn" type="button" aria-expanded="false">Solutions<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <div class="acc-panel">
+        <a href="supply-chain-management.html">Supply chain management</a>
+        <a href="customs.html">Customs</a>
+        <a href="cold-chain.html">Cold chain</a>
+        <a href="dangerous-goods.html">Dangerous goods</a>
+      </div>
+    </div>
+    <div class="acc-group">
+      <button class="acc-btn" type="button" aria-expanded="false">Company<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <div class="acc-panel">
+        <a href="about-us.html">About us</a>
+        <a href="sustainability.html">Sustainability</a>
+        <a href="newsroom.html">Newsroom</a>
+        <a href="careers.html">Careers</a>
+      </div>
+    </div>
+    <div class="acc-group">
+      <button class="acc-btn" type="button" aria-expanded="false">Support<i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+      <div class="acc-panel">
+        <a href="track.html">Track a shipment</a>
+        <a href="contact-us.html">Contact us</a>
+        <a href="help-centre.html">Help centre</a>
+        <a href="sign-in.html">Sign in</a>
+      </div>
+    </div>
+  </div>
   <div class="drawer-actions">
     <a class="btn btn-outline" href="track.html"><i class="fa-solid fa-location-crosshairs" style="margin-right:6px;"></i>Track</a>
-    <a class="btn btn-sky" href="#">Sign in</a>
+    <a class="btn btn-sky" href="sign-in.html">Sign in</a>
   </div>
 </nav>
 
@@ -427,7 +538,7 @@
       <h1 id="heroHeadline">Pacific Express Sea Freight</h1>
       <p class="lead" id="heroLead">Bypass disruptions with a faster, more frequent, and reliable service.</p>
       <div class="hero-actions">
-        <a class="btn btn-sky" href="#">Get a quote</a>
+        <a class="btn btn-sky" href="contact-us.html">Get a quote</a>
         <a class="btn btn-outline" href="track.html"><i class="fa-solid fa-location-crosshairs" style="margin-right:6px;"></i>Track</a>
       </div>
       <div class="hero-dots" id="heroDots" role="tablist" aria-label="Hero slides"></div>
@@ -713,7 +824,7 @@
   <div class="wrap">
     <div class="cta-band">
       <h2>Ready to move your cargo?</h2>
-      <a class="btn btn-navy" href="#">Get a quote</a>
+      <a class="btn btn-navy" href="contact-us.html">Get a quote</a>
     </div>
   </div>
 </section>
@@ -728,37 +839,37 @@
       <div>
         <h4>Services</h4>
         <ul>
-          <li><a href="#road" style="color:inherit; text-decoration:none;">Road freight</a></li>
-          <li><a href="#air" style="color:inherit; text-decoration:none;">Air freight</a></li>
-          <li><a href="#sea" style="color:inherit; text-decoration:none;">Sea freight</a></li>
-          <li>Warehousing</li>
+          <li><a href="road-freight.html" style="color:inherit; text-decoration:none;">Road freight</a></li>
+          <li><a href="air-freight.html" style="color:inherit; text-decoration:none;">Air freight</a></li>
+          <li><a href="sea-freight.html" style="color:inherit; text-decoration:none;">Sea freight</a></li>
+          <li><a href="warehousing.html" style="color:inherit; text-decoration:none;">Warehousing</a></li>
         </ul>
       </div>
       <div>
         <h4>Solutions</h4>
         <ul>
-          <li>Supply chain management</li>
-          <li>Customs</li>
-          <li>Cold chain</li>
-          <li>Dangerous goods</li>
+          <li><a href="supply-chain-management.html" style="color:inherit; text-decoration:none;">Supply chain management</a></li>
+          <li><a href="customs.html" style="color:inherit; text-decoration:none;">Customs</a></li>
+          <li><a href="cold-chain.html" style="color:inherit; text-decoration:none;">Cold chain</a></li>
+          <li><a href="dangerous-goods.html" style="color:inherit; text-decoration:none;">Dangerous goods</a></li>
         </ul>
       </div>
       <div>
         <h4>Company</h4>
         <ul>
-          <li>About us</li>
-          <li>Sustainability</li>
-          <li>Newsroom</li>
-          <li>Careers</li>
+          <li><a href="about-us.html" style="color:inherit; text-decoration:none;">About us</a></li>
+          <li><a href="sustainability.html" style="color:inherit; text-decoration:none;">Sustainability</a></li>
+          <li><a href="newsroom.html" style="color:inherit; text-decoration:none;">Newsroom</a></li>
+          <li><a href="careers.html" style="color:inherit; text-decoration:none;">Careers</a></li>
         </ul>
       </div>
       <div>
         <h4>Support</h4>
         <ul>
           <li><a href="track.html" style="color:inherit; text-decoration:none;">Track a shipment</a></li>
-          <li>Contact us</li>
-          <li>Help centre</li>
-          <li>Sign in</li>
+          <li><a href="contact-us.html" style="color:inherit; text-decoration:none;">Contact us</a></li>
+          <li><a href="help-centre.html" style="color:inherit; text-decoration:none;">Help centre</a></li>
+          <li><a href="sign-in.html" style="color:inherit; text-decoration:none;">Sign in</a></li>
         </ul>
       </div>
     </div>
@@ -926,6 +1037,47 @@
     overlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape') closeDrawer();
+    });
+  })();
+</script>
+<script>
+  (function(){
+    var items = document.querySelectorAll('.navlinks > li.has-dd');
+    function closeAll(except){
+      items.forEach(function(li){
+        if(li !== except){ li.classList.remove('open'); li.querySelector('.dd-toggle').setAttribute('aria-expanded','false'); }
+      });
+    }
+    items.forEach(function(li){
+      var btn = li.querySelector('.dd-toggle');
+      btn.addEventListener('click', function(e){
+        e.stopPropagation();
+        var open = !li.classList.contains('open');
+        closeAll(li);
+        li.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function(e){ if(!e.target.closest('.navlinks')) closeAll(); });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        var o = document.querySelector('.navlinks > li.open > .dd-toggle');
+        closeAll(); if(o) o.focus();
+      }
+    });
+    // drawer accordion
+    document.querySelectorAll('.acc-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        var g = b.parentElement, open = !g.classList.contains('open');
+        g.classList.toggle('open', open);
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+    // close drawer when a link inside it is tapped (needed for same-page anchors)
+    document.querySelectorAll('.drawer a').forEach(function(a){
+      a.addEventListener('click', function(){
+        var c = document.getElementById('menuCloseBtn'); if(c) c.click();
+      });
     });
   })();
 </script>
